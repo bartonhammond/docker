@@ -1269,6 +1269,10 @@ Docker.prototype.renderCodeHtml = function(sections, filename, cb){
     title: path.basename(filename),
     sections: sections
   });
+  function getBasename(_path){
+      return path.basename(_path);
+  }
+
   var html = this.renderTemplate({
     title: path.basename(filename),
     relativeDir: relDir,
@@ -1277,8 +1281,8 @@ Docker.prototype.renderCodeHtml = function(sections, filename, cb){
     sidebar: this.sidebarState,
     colourScheme: this.colourScheme,
     filename: filename.replace(this.inDir,'').replace(/^[\/\\]/,''),
-    js: this.extraJS.map(path.basename),
-    css: this.extraCSS.map(path.basename)
+    js: this.extraJS.map(getBasename),
+    css: this.extraCSS.map(getBasename)
   });
 
   var self = this;
